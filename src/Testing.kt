@@ -51,6 +51,50 @@ object toTest
 
 }
 
+
+//For annotations MD1
+// Out is for Producers (read only)
+interface TypeVariant<out T>
+{
+    fun  next():T
+}
+fun test(dam:TypeVariant<String>) {
+
+    val t:TypeVariant<Any> = dam
+
+}
+interface ContraVariant<in T>
+{
+
+    fun add(t: T): Unit
+}
+fun test2(d1:ContraVariant<Double>,m1:ContraVariant<Any>)
+{
+ d1.add(8.6)
+
+
+    val m:ContraVariant<Double> = m1
+
+}
+open class Parent
+
+class Child:Parent()
+
+class CoParent<out T>
+{
+    fun dame(): T? {
+        val m: T?=null
+        return m
+    }
+}
+
+fun esto(t1:CoParent<Child>):Unit {
+    val t:CoParent<Parent> =t1
+}
+
+
+
+
 interface Machine<T> {
     fun process(product: T)}
 fun <T> useMachine(t: T, machine: Machine<T>) {
